@@ -1,14 +1,16 @@
 FROM ubuntu:18.04
-WORKDIR /qwfwd
-# RUN apt-get update \
-#  && apt-get install -y \
-#  && rm -rf /var/lib/apt/lists/* \
+WORKDIR /qwfwd/
+RUN apt-get update \
+ && apt-get install -y \
+    make \
+    gcc \
+ && rm -rf /var/lib/apt/lists/*
 COPY qwfwd.cfg /qwfwd/
-COPY src/ /qwfwd/
-RUN cd src \
+COPY src/ /tmp/src/
+RUN cd /tmp/src/ \
   && ./configure \
   && make \
-  && mv qwfwd.bin /qwfwd/qwfwd.bin \
-  && cd .. \
-  && rm -rf src/
-CMD ["./qwfwd.bin"]
+  && cd /qwfwd/ \
+  && mv /tmp/src/qwfwd.bin /qwfwd/ \
+  && rm -rf /tmp/src/
+CMD ["/qwfwd/qwfwd.bin"]
