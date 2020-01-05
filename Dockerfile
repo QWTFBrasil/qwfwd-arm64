@@ -13,4 +13,4 @@ RUN cd /tmp/src/ \
   && cd /qwfwd/ \
   && mv /tmp/src/qwfwd.bin /qwfwd/ \
   && rm -rf /tmp/src/
-CMD ["/qwfwd/qwfwd.bin"]
+ENTRYPOINT ["/qwfwd/qwfwd.bin"]
