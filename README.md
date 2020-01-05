@@ -8,7 +8,7 @@ docker build --tag=qwfwd .
 Run qwfwd:
 
 ```sh
-docker run qwfwd
+docker run --interactive --tty --init --publish 30000:30000/udp qwfwd
 ```
 
 
